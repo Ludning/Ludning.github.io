@@ -7,50 +7,50 @@
 <meta name="description" content="Unity 게임플레이 시스템 프로그래머 박문수의 프로젝트별 역할·기술 스택·GitHub 저장소 정리">
 <style>
   :root {
-    --bg: #f1eee6;
-    --surface: #ffffff;
-    --surface-2: #e9e3d4;
-    --border: #ddd4bd;
-    --text: #24211b;
-    --text-dim: #6e6552;
-    --accent: #a85f1d;
-    --accent-soft: #f0dcc2;
-    --accent-2: #3f6e63;
-    --accent-2-soft: #dbe7e2;
-    --code-bg: #e8e1cd;
-    --shadow: 0 1px 2px rgba(36, 33, 27, 0.06);
+    --bg: #f5f1e8;
+    --surface: #fdfbf6;
+    --surface-2: #eee4d0;
+    --border: #ddd0b2;
+    --text: #221d15;
+    --text-dim: #726753;
+    --accent: #9c4c17;
+    --accent-soft: #f0ddc0;
+    --accent-2: #256b5c;
+    --accent-2-soft: #dbe9e2;
+    --code-bg: #ece0c6;
+    --shadow: 0 1px 2px rgba(33, 28, 20, 0.07);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #16140f;
-      --surface: #1e1b15;
-      --surface-2: #262119;
-      --border: #3c352a;
-      --text: #ede7d9;
-      --text-dim: #a89c85;
-      --accent: #e2963f;
-      --accent-soft: #3a2c19;
-      --accent-2: #8ab3a6;
-      --accent-2-soft: #223330;
-      --code-bg: #2a2418;
-      --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      --bg: #15130d;
+      --surface: #1f1b14;
+      --surface-2: #2a2318;
+      --border: #423923;
+      --text: #f1ebdc;
+      --text-dim: #b3a688;
+      --accent: #e6963a;
+      --accent-soft: #4a3115;
+      --accent-2: #45ab8c;
+      --accent-2-soft: #1c3d34;
+      --code-bg: #332815;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
   }
 
   :root[data-theme="dark"] {
-    --bg: #16140f;
-    --surface: #1e1b15;
-    --surface-2: #262119;
-    --border: #3c352a;
-    --text: #ede7d9;
-    --text-dim: #a89c85;
-    --accent: #e2963f;
-    --accent-soft: #3a2c19;
-    --accent-2: #8ab3a6;
-    --accent-2-soft: #223330;
-    --code-bg: #2a2418;
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --bg: #15130d;
+    --surface: #1f1b14;
+    --surface-2: #2a2318;
+    --border: #423923;
+    --text: #f1ebdc;
+    --text-dim: #b3a688;
+    --accent: #e6963a;
+    --accent-soft: #4a3115;
+    --accent-2: #45ab8c;
+    --accent-2-soft: #1c3d34;
+    --code-bg: #332815;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   * { box-sizing: border-box; }
@@ -303,6 +303,19 @@
   .callout .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; }
   .callout p { margin: 0; max-width: 70ch; }
 
+  .decision {
+    margin-top: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-2);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+  }
+  .decision .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-2); display: block; margin-bottom: 14px; }
+  .decision dl { display: grid; grid-template-columns: 84px 1fr; gap: 10px 18px; margin: 0; }
+  .decision dt { font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 600; color: var(--accent-2); padding-top: 1px; }
+  .decision dd { margin: 0; max-width: 64ch; color: var(--text); }
+
   .mini-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -351,6 +364,9 @@
     .hero { padding: 40px 0 28px; }
     section { padding: 40px 0; }
     .proj-header { flex-direction: column; }
+    .decision dl { grid-template-columns: 1fr; gap: 3px 0; }
+    .decision dt { margin-top: 6px; }
+    .decision dt:first-child { margin-top: 0; }
   }
 </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -490,6 +506,17 @@
       <h3><span class="num">03</span>이벤트 버스 기반 UI 갱신</h3>
       <p><code>EventBusManager</code>가 <code>Dictionary&lt;Type, Delegate&gt;</code> 기반 제네릭 Pub/Sub(<code>Publish&lt;T&gt;</code> / <code>Subscribe&lt;T&gt;</code>)을 제공하고, 스킬트리 UI가 <code>EquipmentSkillEvent</code> 등을 구독해 View와 데이터 변경을 분리했습니다.</p>
     </div>
+
+    <div class="decision">
+      <span class="kicker">Design Decision</span>
+      <dl>
+        <dt>문제</dt><dd>스킬트리 UI 등 여러 View가 데이터 변경 시점을 알아야 했는데, View가 매 프레임 데이터를 폴링하거나 데이터 쪽이 UI를 직접 참조하면 로직과 View가 뒤섞이는 구조가 됩니다.</dd>
+        <dt>대안</dt><dd>① 매 프레임 데이터를 확인하는 폴링 방식, ② 데이터 객체가 UI 참조를 들고 직접 갱신을 호출하는 방식, ③ 발행/구독을 분리하는 이벤트 버스 방식을 고려했습니다.</dd>
+        <dt>선택</dt><dd>폴링은 변화가 없어도 매 프레임 비교 비용이 들고, 직접 참조 방식은 데이터 계층이 UI 존재를 알아야 해 MonoBehaviour를 순수 View로 두는 원칙에 어긋났습니다. <code>Dictionary&lt;Type, Delegate&gt;</code> 기반 이벤트 버스로 타입 안전하게 분리하는 쪽을 택했습니다.</dd>
+        <dt>결과</dt><dd>데이터 쪽은 UI 존재 자체를 몰라도 되고, 새 UI가 추가돼도 발행 코드를 건드릴 필요가 없어졌습니다. 이후 프로젝트들에서도 같은 Pub/Sub 원칙을 <code>MessageManager</code>(ProjectCR) 형태로 반복 적용했습니다.</dd>
+      </dl>
+    </div>
+
     <div class="block">
       <h3><span class="num">04</span>씬 인스톨러 / 퀘스트·상태이상</h3>
       <p>씬별 초기화를 담당하는 인스톨러(<code>GameSceneInstaller</code>, <code>SkillTestSceneInstaller</code> 등)로 기능 단위 테스트 씬을 구성했고, <code>Quest</code> – <code>QuestCondition</code> – <code>Reward</code> 조건-보상 구조의 퀘스트 시스템과 <code>IStatusEffect</code> 인터페이스 기반 상태이상 처리 구조를 구현했습니다.</p>
@@ -534,18 +561,30 @@
       <h3><span class="num">01</span>데이터 드리븐 스킬 시스템</h3>
       <p><code>GameData</code>(Odin <code>SerializedScriptableObject</code>)가 <code>Dictionary&lt;int, SkillData&gt;</code>로 스킬을 관리하고, 각 <code>SkillData</code>는 <code>List&lt;SkillElement&gt;</code>를 가집니다. <code>SkillElement</code> 하나가 skillType·damageType·effectType·buffType·costType 등의 필드로 구성되어 하나의 스킬을 여러 "조건-효과 조합" 행으로 표현합니다. <code>Editor/Converter/DataConverter.cs</code>는 ExcelDataReader로 읽은 시트를 리플렉션(<code>FieldInfo</code>, <code>MakeGenericMethod</code>)으로 자동 변환해 ScriptableObject에 채워 넣습니다.</p>
     </div>
+
+    <div class="callout">
+      <span class="kicker">아쉬운 점</span>
+      <p>"조건·효과를 데이터 테이블에 작성하는 방식은 파싱이 복잡하고 오타 가능성이 있다"는 한계를 직접 경험했습니다. 이 경험으로 시스템을 과도하게 복잡하게 만들기보다, 가능한 범위 내에서 최대한 간소화해야 한다는 것을 배웠습니다. 이 문제의식은 이후 <a href="#vcg" style="color:var(--accent); text-decoration:none;">로보쿡드의 맵 에디터 툴</a>과 <a href="#gluttony" style="color:var(--accent); text-decoration:none;">Gluttony의 업그레이드 파이프라인</a>으로 이어집니다.</p>
+    </div>
+
     <div class="block">
       <h3><span class="num">02</span>MVVM 패턴 UI</h3>
       <p><code>ViewBase&lt;TViewModel, TMessage&gt;</code> / <code>ViewModelBase&lt;TMessage&gt;</code> 제네릭 베이스로 골격을 구성했습니다. 뷰모델은 <code>MessageManager</code>(타입별 델리게이트 Pub/Sub)로 메시지를 구독하고 <code>INotifyPropertyChanged</code>로 뷰에 변경을 알립니다. BossHp / Buff / PlayerHp / PlayerMp / SkillPanal이 이 베이스를 상속합니다.</p>
     </div>
+
+    <div class="decision">
+      <span class="kicker">Design Decision</span>
+      <dl>
+        <dt>문제</dt><dd>스킬 시스템이 커지면서 UI 갱신 로직과 게임 로직이 MonoBehaviour 안에 뒤섞여, 로직만 따로 테스트하거나 다른 View로 재사용하기 어려운 상태였습니다.</dd>
+        <dt>대안</dt><dd>① 기존처럼 MonoBehaviour에 로직을 직접 작성, ② Controller가 Model/View를 중재하는 MVC, ③ ViewModel이 <code>INotifyPropertyChanged</code>로 변경을 통지하고 View는 구독만 하는 MVVM을 검토했습니다.</dd>
+        <dt>선택</dt><dd>MVC는 Controller가 여전히 View 참조를 들고 있어야 하지만, MVVM은 ViewModel이 View를 전혀 몰라도 되어 View 교체·테스트가 쉽습니다. <code>MessageManager</code>로 뷰모델 간 통신까지 분리해 BossHp·Buff 등 다수 UI 요소를 같은 패턴으로 확장 가능하게 만들었습니다.</dd>
+        <dt>결과</dt><dd><code>ViewBase</code>/<code>ViewModelBase</code> 제네릭 베이스 하나로 5개 이상의 UI 요소를 동일한 패턴으로 구현했고, 이 Model/View 분리 경험은 이후 Gluttony 스킬트리의 Model/Presenter/View 3계층 설계로 이어졌습니다.</dd>
+      </dl>
+    </div>
+
     <div class="block">
       <h3><span class="num">03</span>비헤이비어 트리 몬스터 AI · 아이템 조합 구조</h3>
       <p>Behavior Designer로 Action(AttackPattern, Patrol, TrackingTarget)·Conditional·SharedVariable을 조합해 AI를 구성했고, <code>ItemBase</code> / <code>ArchetypeBase</code>(원형) / <code>SpecificityBase</code>(세부 특성)로 아이템 종류가 늘어나도 속성 조합만으로 확장 가능한 구조를 설계했습니다.</p>
-    </div>
-
-    <div class="callout">
-      <span class="kicker">Retrospective</span>
-      <p>"조건·효과를 데이터 테이블에 작성하는 방식은 파싱이 복잡하고 오타 가능성이 있다"는 한계를 직접 경험했고, 이런 경우 전용 스킬 데이터 에디터 툴을 만드는 편이 더 효율적이라는 결론을 얻었습니다. 이 문제의식은 이후 <a href="#vcg" style="color:var(--accent); text-decoration:none;">로보쿡드의 맵 에디터 툴</a>과 <a href="#gluttony" style="color:var(--accent); text-decoration:none;">Gluttony의 업그레이드 파이프라인</a>으로 이어집니다.</p>
     </div>
   </section>
 
@@ -616,6 +655,17 @@
       <h3><span class="num">02</span>자체 제작 맵 에디터 툴</h3>
       <p><code>MapEditorTool</code>은 UI Toolkit(<code>EditorWindow</code> + <code>UnityEngine.UIElements</code>)으로 만든 커스텀 에디터로, 툴바·<code>MapDrawSpace</code>(그리기 영역)·<code>TilePalette</code>·<code>Inspector</code>·<code>MapInfoListView</code>로 구성된 완전한 그래픽 툴입니다. 기획팀이 코드를 몰라도 맵을 직접 만들고 수정할 수 있도록 제작했습니다.</p>
     </div>
+
+    <div class="decision">
+      <span class="kicker">Design Decision</span>
+      <dl>
+        <dt>문제</dt><dd>프로그래머가 직접 좌표·값을 입력하는 하드코딩 방식은 기획팀이 맵을 검증·수정할 때마다 프로그래머를 거쳐야 해 병목이 생긴다고 판단해 고려 대상에서 제외했습니다. 엑셀 등 테이블에 지형의 어떤 위치에 어떤 동작을 배치할지 값으로 입력하게 하는 방식 역시 기획자 입장에서는 직관적이지 않고 불편할 것이라 판단했습니다.</dd>
+        <dt>대안</dt><dd>① 인스펙터에 배열/리스트 필드를 그대로 노출하는 방식, ② ProjectCR처럼 엑셀 시트로 좌표를 관리하는 방식, ③ UI Toolkit으로 그리기 화면을 갖춘 전용 맵 에디터 창을 직접 제작하는 방식을 검토했습니다.</dd>
+        <dt>선택</dt><dd>배열 노출은 좌표를 숫자로 다뤄야 해 직관적이지 않고, 엑셀 방식은 "파싱이 복잡하고 오타 가능성이 있다"는 한계를 이미 경험한 뒤였습니다. 기획팀이 타일을 시각적으로 클릭해 배치해야 한다는 요구가 명확해, <code>EditorWindow</code> 기반 전용 툴을 직접 만들기로 했습니다.</dd>
+        <dt>결과</dt><dd><code>MapEditorTool</code>로 기획팀이 코드 없이 맵을 직접 만들고 수정할 수 있게 되어 병목이 사라졌습니다. "데이터 테이블 대신 전용 에디터 툴" 접근은 이후 Gluttony 업그레이드 시스템에서도 같은 방식으로 반복됩니다.</dd>
+      </dl>
+    </div>
+
     <div class="block">
       <h3><span class="num">03</span>UniTask 비동기 처리 · VR 인터랙션</h3>
       <p>블록 오브젝트 생명주기 관리에 <code>UniTaskVoid</code> + <code>Forget()</code> 패턴을 사용했고, Meta Interaction SDK의 <code>InteractableUnityEventWrapper</code> 이벤트로 VR 핸드 인터랙션을 구현했습니다.</p>
@@ -684,6 +734,16 @@
       <p>하나의 강화를 <strong>조건(언제/만약) + 효과(무엇을)</strong> 조합으로 설계해 30종 이상을 코드 분기 없이 데이터로 정의했습니다. <code>BossUpgradeFactory</code>가 enum을 받아 조건·동작 객체를 생성(전략+팩토리 패턴)하고, <code>ExecutionStack</code>으로 스택 추가 시 이전 효과를 제거 후 재적용해 항상 원복 가능하게 만들었습니다.</p>
     </div>
 
+    <div class="decision">
+      <span class="kicker">Design Decision</span>
+      <dl>
+        <dt>문제</dt><dd>보스 강화 효과가 30종 이상으로 늘어날 예정이었는데, 강화마다 발동 조건과 효과가 달라 전부 하드코딩하면 새 강화 하나당 분기 코드를 추가해야 하는 구조가 됩니다.</dd>
+        <dt>대안</dt><dd>① 강화별로 별도 클래스를 만들고 switch문으로 분기하는 방식, ② 강화를 조건(Condition)과 효과(Executor)로 쪼개 데이터로 조합하는 방식을 검토했습니다.</dd>
+        <dt>선택</dt><dd>개인 프로젝트(ProjectCR)에서 검증했던 조건-효과 조합 방식을 팀 규모로 확장할 수 있다고 판단해, <code>BossUpgradeFactory</code>가 enum으로 조건·동작 객체를 생성하는 전략+팩토리 패턴을 택했습니다. 조건과 효과를 독립 객체로 두면 새 강화는 기존 조합을 재사용하거나 클래스 하나만 추가하면 됩니다.</dd>
+        <dt>결과</dt><dd>30종 이상의 강화를 코드 분기 없이 데이터로 정의했고, <code>ExecutionStack</code>으로 언제든 원복 가능한 구조를 확보했습니다. 이 설계가 이후 100종 이상으로 확장되는 Phase II 업그레이드 시스템의 기반이 되었습니다.</dd>
+      </dl>
+    </div>
+
     <ul class="case-list">
       <li><span class="idx">01</span><span><span class="problem">대형 클래스(BossController) 유지보수 부담</span><span class="arrow">→</span>파셜 클래스로 본체/상태전이/스킬연동 분리, 머지 충돌 완화</span></li>
       <li><span class="idx">02</span><span><span class="problem">강화 종류가 늘수록 프로그래머 병목</span><span class="arrow">→</span>조건+효과 데이터 구동 구조로 전환</span></li>
@@ -712,6 +772,16 @@
     <div class="block">
       <h3><span class="num">04</span>푸드파워 스킬 · 버프 시스템</h3>
       <p><code>SkillBase</code>(약 1,470줄) → <code>FoodPowerSkill</code> 파생 구조로 "레벨 데이터 + 스킬 강화 + 전역 보정"을 더하는 레이어드 스탯 해석을 구현했습니다. <code>BuffHandler</code>(약 630줄)는 빙결·화상·기절 등 상태이상 20종을 관리하며, 일반 버프와 중첩 배율 계산이 필요한 버프를 리스트를 분리해 운용합니다. 버프는 증가 속도가 느려 의도적으로 switch 팩토리를 유지 — 업그레이드(리플렉션 자동 등록)와 <strong>규모·변화 빈도에 따라 팩토리 전략을 다르게 선택</strong>한 사례입니다.</p>
+    </div>
+
+    <div class="decision">
+      <span class="kicker">Design Decision</span>
+      <dl>
+        <dt>문제</dt><dd>기존 업그레이드 팩토리는 약 150줄짜리 switch문으로, 새 효과를 추가할 때마다 팩토리 코드를 직접 수정해야 했습니다. 효과 종류가 100종 이상으로 늘어날 계획이라 코드가 계속 비대해지고 팀 병합 충돌 위험도 커지는 상황이었습니다. 반면 버프는 상태이상 20종 수준으로 종류가 적고 변화 빈도도 낮았습니다.</dd>
+        <dt>대안</dt><dd>① 업그레이드·버프 모두 기존 switch 팩토리를 유지, ② 둘 다 커스텀 어트리뷰트 + 리플렉션 자동 등록으로 전환, ③ 업그레이드만 리플렉션으로 전환하고 버프는 switch를 유지하는 방식을 검토했습니다.</dd>
+        <dt>선택</dt><dd>리플렉션 자동 등록은 팩토리 코드를 건드리지 않고 클래스 파일 추가만으로 등록이 끝나 대규모 확장에 유리하지만, 종류가 적고 잘 안 바뀌는 곳까지 적용하면 리플렉션 비용과 IL2CPP/AOT 환경에서의 예측 어려움만 늘어납니다. 종류가 많고 계속 늘어나는 업그레이드는 리플렉션으로, 규모가 작고 안정적인 버프는 기존 switch로 — 규모와 변화 빈도에 따라 전략을 다르게 선택했습니다.</dd>
+        <dt>결과</dt><dd>업그레이드는 <code>[Executor(ExecutorType.XXX)]</code> 어트리뷰트만 붙이면 정적 생성자에서 자동 등록되어 100종 이상으로 확장됐고, 버프는 기존 switch 구조를 유지해 불필요한 리팩토링 비용 없이 안정적으로 운용 중입니다.</dd>
+      </dl>
     </div>
 
     <ul class="case-list">
