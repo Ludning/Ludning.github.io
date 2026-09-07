@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>박문수 포트폴리오</title>
+<meta name="description" content="Unity 게임플레이 시스템 프로그래머 박문수의 프로젝트별 역할·기술 스택·GitHub 저장소 정리">
+<style>
+  :root {
+    --bg: #f1eee6;
+    --surface: #ffffff;
+    --surface-2: #e9e3d4;
+    --border: #ddd4bd;
+    --text: #24211b;
+    --text-dim: #6e6552;
+    --accent: #a85f1d;
+    --accent-soft: #f0dcc2;
+    --accent-2: #3f6e63;
+    --accent-2-soft: #dbe7e2;
+    --code-bg: #e8e1cd;
+    --shadow: 0 1px 2px rgba(36, 33, 27, 0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16140f;
+      --surface: #1e1b15;
+      --surface-2: #262119;
+      --border: #3c352a;
+      --text: #ede7d9;
+      --text-dim: #a89c85;
+      --accent: #e2963f;
+      --accent-soft: #3a2c19;
+      --accent-2: #8ab3a6;
+      --accent-2-soft: #223330;
+      --code-bg: #2a2418;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #16140f;
+    --surface: #1e1b15;
+    --surface-2: #262119;
+    --border: #3c352a;
+    --text: #ede7d9;
+    --text-dim: #a89c85;
+    --accent: #e2963f;
+    --accent-soft: #3a2c19;
+    --accent-2: #8ab3a6;
+    --accent-2-soft: #223330;
+    --code-bg: #2a2418;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Gowun Dodum', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Gowun Batang', ui-serif, 'Noto Serif KR', serif;
+    font-weight: 700;
+    text-wrap: balance;
+    margin: 0;
+    color: var(--text);
+  }
+
+  code, .mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- top nav ---------- */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .topnav-inner {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .topnav-inner::-webkit-scrollbar { display: none; }
+  .topnav a {
+    flex: none;
+    text-decoration: none;
+    font-size: 0.86rem;
+    color: var(--text-dim);
+    padding: 14px 12px;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .topnav a:hover, .topnav a:focus-visible { color: var(--text); }
+  .topnav a.brand {
+    color: var(--text);
+    font-weight: 600;
+    padding-right: 18px;
+    border-right: 1px solid var(--border);
+    margin-right: 4px;
+  }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 56px 0 40px; }
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 14px;
+  }
+  .hero h1 { font-size: clamp(2rem, 4.5vw, 2.7rem); line-height: 1.25; }
+  .hero .role {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--text-dim);
+  }
+  .hero .philosophy {
+    margin-top: 22px;
+    max-width: 62ch;
+    font-size: 1rem;
+    color: var(--text);
+    border-left: 2px solid var(--accent);
+    padding-left: 16px;
+  }
+
+  .stat-row {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .stat {
+    background: var(--surface);
+    padding: 16px 18px;
+  }
+  .stat .n {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .stat .l {
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+
+  /* ---------- section shell ---------- */
+  section { padding: 52px 0; border-top: 1px solid var(--border); }
+  section.hero { border-top: none; }
+  .section-head { margin-bottom: 24px; }
+  .section-head .kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .section-head h2 { font-size: 1.7rem; }
+  p.lede { color: var(--text-dim); max-width: 68ch; margin-top: 10px; }
+
+  /* ---------- overview table ---------- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; min-width: 720px; }
+  thead th {
+    text-align: left;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+    font-weight: 600;
+    padding: 12px 16px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 0.92rem;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--surface-2); }
+  td.proj-name { font-weight: 600; white-space: nowrap; }
+  td.proj-name a { text-decoration: none; color: var(--text); }
+  td.proj-name .sub { display: block; font-size: 0.78rem; font-weight: 400; color: var(--text-dim); margin-top: 2px; }
+  td.period { font-variant-numeric: tabular-nums; color: var(--text-dim); white-space: nowrap; }
+  .tag-cell { display: flex; flex-wrap: wrap; gap: 6px; max-width: 260px; }
+
+  .pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 3px 9px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .pill.category { background: var(--accent-soft); color: var(--accent); border-color: transparent; font-weight: 600; }
+  .pill.solo { background: var(--accent-2-soft); color: var(--accent-2); border-color: transparent; }
+
+  .tech-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    padding: 4px 10px;
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
+  }
+  .tech-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+
+  .gh-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 4px;
+    background: var(--text);
+    color: var(--bg);
+    white-space: nowrap;
+  }
+  .gh-link:hover { opacity: 0.85; }
+  .gh-link.outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .gh-link svg { width: 16px; height: 16px; flex: none; }
+  .gh-note { display: block; margin-top: 6px; font-size: 0.76rem; color: var(--text-dim); }
+
+  /* ---------- project section ---------- */
+  .proj-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin-top: 14px;
+    font-size: 0.86rem;
+    color: var(--text-dim);
+  }
+  .proj-meta strong { color: var(--text); font-weight: 600; }
+  .proj-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .block { margin-top: 30px; }
+  .block h3 { font-size: 1.05rem; margin-bottom: 10px; }
+  .block h3 .num { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.85em; margin-right: 8px; }
+  .block p { margin: 0 0 12px; max-width: 70ch; }
+  .block p:last-child { margin-bottom: 0; }
+  .block ul { margin: 0; padding-left: 1.15em; max-width: 70ch; }
+  .block li { margin-bottom: 8px; }
+  .block li:last-child { margin-bottom: 0; }
+
+  .callout {
+    margin-top: 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    box-shadow: var(--shadow);
+  }
+  .callout .kicker { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 8px; }
+  .callout p { margin: 0; max-width: 70ch; }
+
+  .mini-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 24px;
+  }
+  .mini-stats .stat { padding: 14px 16px; }
+  .mini-stats .n { font-size: 1.25rem; }
+
+  .phase-title {
+    margin-top: 44px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .phase-title h4 { font-family: 'Gowun Batang', serif; font-size: 1.2rem; }
+  .phase-title span { font-size: 0.82rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+  .case-list { margin-top: 14px; padding: 0; list-style: none; }
+  .case-list li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.92rem;
+  }
+  .case-list li:first-child { border-top: none; }
+  .case-list .idx { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+  .case-list .problem { color: var(--text-dim); }
+  .case-list .arrow { color: var(--accent); margin: 0 4px; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 60px;
+    color: var(--text-dim);
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 0 28px; }
+    section { padding: 40px 0; }
+    .proj-header { flex-direction: column; }
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&family=JetBrains+Mono:wght@400;500;600&display=swap">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="#top">박문수</a>
+    <a href="#overview">개요</a>
+    <a href="#unity2d">Unity2DProject</a>
+    <a href="#projectcr">ProjectCR</a>
+    <a href="#ephemera">Ephemera</a>
+    <a href="#vcg">로보쿡드</a>
+    <a href="#gluttony">Gluttony</a>
+  </div>
+</nav>
+
+<div class="wrap">
+  <section class="hero" id="top">
+    <p class="eyebrow">기술 포트폴리오 · C# / Unity</p>
+    <h1>박문수 <span class="mono" style="font-family:'JetBrains Mono',monospace; font-size:0.55em; color:var(--text-dim); font-weight:500;">(GitHub: Ludning)</span></h1>
+    <p class="role">Unity 클라이언트 · 게임플레이 시스템 프로그래머</p>
+    <p class="philosophy">MonoBehaviour는 순수 View 계층으로만 두고 로직은 일반 C# 클래스에 담는 MVP 구조를 원칙으로 삼습니다. 개인 프로젝트 2건과 팀 프로젝트 3건을 거치며 AI·데이터 드리븐 시스템·에디터 툴링·네트워크 동기화를 각각 다른 문제로 직접 부딪혀 왔고, 현재는 5인 팀의 로그라이트 액션 게임에서 업그레이드·스킬·투사체·버프 4개 도메인을 주담당하고 있습니다.</p>
+
+    <div class="stat-row">
+      <div class="stat"><div class="n">5</div><div class="l">참여 프로젝트</div></div>
+      <div class="stat"><div class="n">2 / 3</div><div class="l">개인 / 팀 프로젝트</div></div>
+      <div class="stat"><div class="n">582</div><div class="l">Gluttony 누적 커밋</div></div>
+      <div class="stat"><div class="n">33,800</div><div class="l">Gluttony 개인 담당 라인</div></div>
+      <div class="stat"><div class="n">'24.04 –</div><div class="l">진행 기간 (진행 중)</div></div>
+    </div>
+  </section>
+
+  <section id="overview">
+    <div class="section-head">
+      <span class="kicker">At a glance</span>
+      <h2>프로젝트 개요</h2>
+      <p class="lede">분류·기간·인원·핵심 기술을 한눈에 비교할 수 있도록 정리했습니다. 프로젝트명을 클릭하면 상세 내용으로 이동합니다.</p>
+    </div>
+
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>프로젝트</th>
+            <th>분류</th>
+            <th>기간</th>
+            <th>인원</th>
+            <th>핵심 기술 스택</th>
+            <th>저장소</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="proj-name"><a href="#unity2d">Unity2DProject<span class="sub">2D RPG</span></a></td>
+            <td><span class="pill solo">개인</span></td>
+            <td class="period">24.04.09–19<br>(10일)</td>
+            <td>1인</td>
+            <td class="tag-cell"><span class="tech-tag">State AI</span><span class="tech-tag">이진 공간 분할+셀룰러 오토마타</span><span class="tech-tag">이벤트 버스</span></td>
+            <td><a class="gh-link outline" href="https://github.com/Ludning/Unity2DProject" target="_blank" rel="noopener">GitHub</a></td>
+          </tr>
+          <tr>
+            <td class="proj-name"><a href="#projectcr">ProjectCR<span class="sub">3D 캐주얼 RPG</span></a></td>
+            <td><span class="pill solo">개인</span></td>
+            <td class="period">24.06.17–07.10<br>(24일)</td>
+            <td>1인</td>
+            <td class="tag-cell"><span class="tech-tag">데이터드리븐 스킬</span><span class="tech-tag">비헤이비어 트리</span><span class="tech-tag">MVVM</span></td>
+            <td><a class="gh-link outline" href="https://github.com/Ludning/ProjectCR" target="_blank" rel="noopener">GitHub</a></td>
+          </tr>
+          <tr>
+            <td class="proj-name"><a href="#ephemera">Ephemera<span class="sub">3D 공포 협동 탈출</span></a></td>
+            <td><span class="pill category">팀</span></td>
+            <td class="period">24.05.10–27<br>(17일)</td>
+            <td>4인</td>
+            <td class="tag-cell"><span class="tech-tag">Mirror Networking</span><span class="tech-tag">커스텀 NetworkManager</span><span class="tech-tag">네트워크 동기화</span></td>
+            <td><a class="gh-link outline" href="https://github.com/Ludning/Ephemera" target="_blank" rel="noopener">GitHub</a></td>
+          </tr>
+          <tr>
+            <td class="proj-name"><a href="#vcg">로보쿡드<span class="sub">VR 블록코딩 (ProjectVCG)</span></a></td>
+            <td><span class="pill category">팀</span></td>
+            <td class="period">24.08.19–10.28<br>(70일)</td>
+            <td>9인</td>
+            <td class="tag-cell"><span class="tech-tag">블록코딩 시스템</span><span class="tech-tag">UniTask</span><span class="tech-tag">에디터 툴링</span></td>
+            <td><a class="gh-link outline" href="https://github.com/Ludning/ProjectVCG" target="_blank" rel="noopener">GitHub</a></td>
+          </tr>
+          <tr>
+            <td class="proj-name"><a href="#gluttony">Gluttony<span class="sub">URP 로그라이트 액션 · Steam 출시 목표</span></a></td>
+            <td><span class="pill category">팀 · 진행중</span></td>
+            <td class="period">24.12–26.09<br>(진행 중)</td>
+            <td>5인</td>
+            <td class="tag-cell"><span class="tech-tag">MVP</span><span class="tech-tag">리플렉션 자동 등록</span><span class="tech-tag">트리거·조건·효과 구조</span></td>
+            <td><a class="gh-link outline" href="https://github.com/jahniyoon/Project_Gluttony" target="_blank" rel="noopener">GitHub</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= Unity2DProject ================= -->
+  <section id="unity2d">
+    <div class="proj-header">
+      <div>
+        <span class="eyebrow">01 · 개인 프로젝트</span>
+        <h2 style="font-size:1.6rem;">Unity2DProject</h2>
+        <p class="lede" style="margin-top:6px;">이진 공간 분할과 셀룰러 오토마타로 맵을 절차 생성하는 2D RPG</p>
+        <div class="proj-meta">
+          <span><strong>기간</strong> 2024.04.09 – 04.19 (10일)</span>
+          <span><strong>인원</strong> 1인</span>
+          <span><strong>엔진</strong> Unity 2021.3.36f1</span>
+        </div>
+      </div>
+      <div>
+        <a class="gh-link" href="https://github.com/Ludning/Unity2DProject" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          저장소 보기
+        </a>
+        <span class="gh-note">개인 소유 저장소 · 공개</span>
+      </div>
+    </div>
+
+    <div class="tech-cloud">
+      <span class="tech-tag">Unity Engine</span><span class="tech-tag">Visual Studio</span><span class="tech-tag">Github/Fork</span>
+      <span class="tech-tag">com.unity.feature.2d</span><span class="tech-tag">Addressables</span><span class="tech-tag">New Input System</span>
+      <span class="tech-tag">TextMeshPro</span><span class="tech-tag">Timeline</span><span class="tech-tag">Newtonsoft.Json</span><span class="tech-tag">NavMeshPlus</span>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">01</span>State 패턴 몬스터 AI</h3>
+      <p><code>AIStateMachine&lt;T&gt;</code>가 <code>IState&lt;T&gt;</code>(OperateEnter / OperateUpdate / OperateExit)를 구현한 상태 객체를 들고 있다가 <code>SetState()</code> 호출 시 이전 상태의 Exit → 상태 교체 → 새 상태의 Enter를 순서대로 호출하는 제네릭 상태 머신입니다. 몬스터 타입에 관계없이 재사용할 수 있도록 설계했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">02</span>절차적 맵 생성 (이진 공간 분할 + 셀룰러 오토마타)</h3>
+      <p><code>BinarySpacePartition</code>이 맵을 사각형으로 재귀 분할(<code>BSPNode.Partition()</code>)해 방 후보 영역을 만들고, 인접 노드 간 연결 리스트(<code>GetAdjacencyList</code>)로 방-방 연결 구조를 계산합니다. 여기에 <code>CellularAutomata</code>로 지형의 유기적인 형태를 결합했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">03</span>이벤트 버스 기반 UI 갱신</h3>
+      <p><code>EventBusManager</code>가 <code>Dictionary&lt;Type, Delegate&gt;</code> 기반 제네릭 Pub/Sub(<code>Publish&lt;T&gt;</code> / <code>Subscribe&lt;T&gt;</code>)을 제공하고, 스킬트리 UI가 <code>EquipmentSkillEvent</code> 등을 구독해 View와 데이터 변경을 분리했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">04</span>씬 인스톨러 / 퀘스트·상태이상</h3>
+      <p>씬별 초기화를 담당하는 인스톨러(<code>GameSceneInstaller</code>, <code>SkillTestSceneInstaller</code> 등)로 기능 단위 테스트 씬을 구성했고, <code>Quest</code> – <code>QuestCondition</code> – <code>Reward</code> 조건-보상 구조의 퀘스트 시스템과 <code>IStatusEffect</code> 인터페이스 기반 상태이상 처리 구조를 구현했습니다.</p>
+    </div>
+
+    <div class="callout">
+      <span class="kicker">Highlight</span>
+      <p>렌더링 순서 정리와 화면 밖 오브젝트 비활성화로 드로우콜을 최소화하는 최적화를 직접 수행했고, 제네릭 State 패턴·제네릭 이벤트 버스 등 <strong>재사용 가능한 구조 설계</strong> 경험을 이 프로젝트에서 처음 확립했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= ProjectCR ================= -->
+  <section id="projectcr">
+    <div class="proj-header">
+      <div>
+        <span class="eyebrow">02 · 개인 프로젝트</span>
+        <h2 style="font-size:1.6rem;">ProjectCR</h2>
+        <p class="lede" style="margin-top:6px;">엑셀 기반 데이터 드리븐 스킬 시스템을 실험한 3D 캐주얼 RPG</p>
+        <div class="proj-meta">
+          <span><strong>기간</strong> 2024.06.17 – 07.10 (24일)</span>
+          <span><strong>인원</strong> 1인</span>
+          <span><strong>엔진</strong> Unity 2022.3.31f1</span>
+        </div>
+      </div>
+      <div>
+        <a class="gh-link" href="https://github.com/Ludning/ProjectCR" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          저장소 보기
+        </a>
+        <span class="gh-note">기본 브랜치 master + BattleSystem 브랜치</span>
+      </div>
+    </div>
+
+    <div class="tech-cloud">
+      <span class="tech-tag">UniTask</span><span class="tech-tag">Addressables</span><span class="tech-tag">URP 14</span><span class="tech-tag">Odin Inspector</span>
+      <span class="tech-tag">Behavior Designer</span><span class="tech-tag">ExcelDataReader</span><span class="tech-tag">NuGetForUnity</span>
+      <span class="tech-tag">Rider</span><span class="tech-tag">NodeJs*</span><span class="tech-tag">MariaDB*</span><span class="tech-tag">Mirror*</span>
+    </div>
+    <p style="margin-top:10px; font-size:0.8rem; color:var(--text-dim);">* NodeJs 로그인 / MariaDB / Mirror 네트워크는 포트폴리오 상 명시되어 있으나, 확인한 브랜치 범위(Assets/Script)에서는 코드가 직접 확인되지 않아 별도 표기했습니다.</p>
+
+    <div class="block">
+      <h3><span class="num">01</span>데이터 드리븐 스킬 시스템</h3>
+      <p><code>GameData</code>(Odin <code>SerializedScriptableObject</code>)가 <code>Dictionary&lt;int, SkillData&gt;</code>로 스킬을 관리하고, 각 <code>SkillData</code>는 <code>List&lt;SkillElement&gt;</code>를 가집니다. <code>SkillElement</code> 하나가 skillType·damageType·effectType·buffType·costType 등의 필드로 구성되어 하나의 스킬을 여러 "조건-효과 조합" 행으로 표현합니다. <code>Editor/Converter/DataConverter.cs</code>는 ExcelDataReader로 읽은 시트를 리플렉션(<code>FieldInfo</code>, <code>MakeGenericMethod</code>)으로 자동 변환해 ScriptableObject에 채워 넣습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">02</span>MVVM 패턴 UI</h3>
+      <p><code>ViewBase&lt;TViewModel, TMessage&gt;</code> / <code>ViewModelBase&lt;TMessage&gt;</code> 제네릭 베이스로 골격을 구성했습니다. 뷰모델은 <code>MessageManager</code>(타입별 델리게이트 Pub/Sub)로 메시지를 구독하고 <code>INotifyPropertyChanged</code>로 뷰에 변경을 알립니다. BossHp / Buff / PlayerHp / PlayerMp / SkillPanal이 이 베이스를 상속합니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">03</span>비헤이비어 트리 몬스터 AI · 아이템 조합 구조</h3>
+      <p>Behavior Designer로 Action(AttackPattern, Patrol, TrackingTarget)·Conditional·SharedVariable을 조합해 AI를 구성했고, <code>ItemBase</code> / <code>ArchetypeBase</code>(원형) / <code>SpecificityBase</code>(세부 특성)로 아이템 종류가 늘어나도 속성 조합만으로 확장 가능한 구조를 설계했습니다.</p>
+    </div>
+
+    <div class="callout">
+      <span class="kicker">Retrospective</span>
+      <p>"조건·효과를 데이터 테이블에 작성하는 방식은 파싱이 복잡하고 오타 가능성이 있다"는 한계를 직접 경험했고, 이런 경우 전용 스킬 데이터 에디터 툴을 만드는 편이 더 효율적이라는 결론을 얻었습니다. 이 문제의식은 이후 <a href="#vcg" style="color:var(--accent); text-decoration:none;">로보쿡드의 맵 에디터 툴</a>과 <a href="#gluttony" style="color:var(--accent); text-decoration:none;">Gluttony의 업그레이드 파이프라인</a>으로 이어집니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= Ephemera ================= -->
+  <section id="ephemera">
+    <div class="proj-header">
+      <div>
+        <span class="eyebrow">03 · 팀 프로젝트 (4인)</span>
+        <h2 style="font-size:1.6rem;">Ephemera</h2>
+        <p class="lede" style="margin-top:6px;">Mirror 네트워크 프레임워크 도입과 서버·룸 연결을 담당한 3D 공포 협동 탈출 게임</p>
+        <div class="proj-meta">
+          <span><strong>기간</strong> 2024.05.10 – 05.27 (17일)</span>
+          <span><strong>인원</strong> 4인</span>
+          <span><strong>담당</strong> Mirror 네트워크 프레임워크 도입 · 서버-룸 연결 구현</span>
+        </div>
+      </div>
+      <div>
+        <a class="gh-link" href="https://github.com/Ludning/Ephemera" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          저장소 보기
+        </a>
+        <span class="gh-note">비공개 → 공개 전환된 저장소, main 브랜치</span>
+      </div>
+    </div>
+
+    <div class="tech-cloud">
+      <span class="tech-tag">Mirror Networking</span><span class="tech-tag">ParrelSync</span><span class="tech-tag">Rider</span>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">01</span>Mirror 네트워크 프레임워크 도입 · 서버 연동</h3>
+      <p>Mirror Networking을 프로젝트에 직접 추가하고, <code>NetworkManager</code>를 상속한 <code>GameNetworkManager</code>와 <code>NetworkRoomManager</code>를 상속한 <code>GameRoomNetworkManager</code>로 서버 접속과 룸(Room) 생성·입장 흐름을 구현했습니다. <code>CreateCharacterMessage</code> 등 커스텀 <code>NetworkMessage</code>로 클라이언트 접속 시 캐릭터 생성 정보를 서버에 동기화하는 로직을 담당했습니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= 로보쿡드 (ProjectVCG) ================= -->
+  <section id="vcg">
+    <div class="proj-header">
+      <div>
+        <span class="eyebrow">04 · 팀 프로젝트 (9인 · VR)</span>
+        <h2 style="font-size:1.6rem;">로보쿡드 <span class="mono" style="font-size:0.6em; color:var(--text-dim); font-weight:500;">(ProjectVCG)</span></h2>
+        <p class="lede" style="margin-top:6px;">어린이를 위한 VR 블록코딩 게임 — 자체 제작 맵 에디터 툴이 핵심</p>
+        <div class="proj-meta">
+          <span><strong>기간</strong> 2024.08.19 – 10.28 (70일)</span>
+          <span><strong>인원</strong> 9인</span>
+          <span><strong>플랫폼</strong> Meta(Oculus) VR</span>
+        </div>
+      </div>
+      <div>
+        <a class="gh-link" href="https://github.com/Ludning/ProjectVCG" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          저장소 보기
+        </a>
+        <span class="gh-note">비공개 → 공개 전환된 저장소</span>
+      </div>
+    </div>
+
+    <div class="tech-cloud">
+      <span class="tech-tag">UniTask</span><span class="tech-tag">Oculus Interaction SDK</span><span class="tech-tag">UI Toolkit</span>
+      <span class="tech-tag">EditorWindow</span><span class="tech-tag">Rider</span>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">01</span>함수 블록 기반 블록코딩 시스템</h3>
+      <p><code>BlockLogicBase</code>를 상속한 블록(MoveLogic, RotateLeftLogic, DashLogic, PushItemLogic, RepeatBlockLogic, CookLogic 등)이 <code>IsExecutable()</code> · <code>Execute()</code> · <code>CheakClear()</code>를 오버라이드하는 공통 인터페이스로 동작합니다. 예를 들어 <code>CookLogic</code>은 바닥 타일 → 조리 가능 지형 → 재료 존재 → 레시피 매칭을 순서대로 검사한 뒤 <code>GameManager.FindPossibleRecipes()</code>로 완성 음식을 판정합니다. 블록을 <code>Sheet</code>(MainSheet/ExSheet/RepeatSheet)에 배치해 코드 없이 로직을 조립할 수 있게 했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">02</span>자체 제작 맵 에디터 툴</h3>
+      <p><code>MapEditorTool</code>은 UI Toolkit(<code>EditorWindow</code> + <code>UnityEngine.UIElements</code>)으로 만든 커스텀 에디터로, 툴바·<code>MapDrawSpace</code>(그리기 영역)·<code>TilePalette</code>·<code>Inspector</code>·<code>MapInfoListView</code>로 구성된 완전한 그래픽 툴입니다. 기획팀이 코드를 몰라도 맵을 직접 만들고 수정할 수 있도록 제작했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">03</span>UniTask 비동기 처리 · VR 인터랙션</h3>
+      <p>블록 오브젝트 생명주기 관리에 <code>UniTaskVoid</code> + <code>Forget()</code> 패턴을 사용했고, Meta Interaction SDK의 <code>InteractableUnityEventWrapper</code> 이벤트로 VR 핸드 인터랙션을 구현했습니다.</p>
+    </div>
+
+    <div class="callout">
+      <span class="kicker">Retrospective</span>
+      <p><code>Singleton&lt;T&gt;</code> / <code>SingletonMonoBehaviour&lt;T&gt;</code> 기반 매니저 구조가 SOLID(특히 의존성 역전) 원칙에 어긋난다는 점을 인식하고 사용을 최소화하려 했으나, 규모가 커지며 참조 관계 관리가 까다로워지는 한계를 경험했습니다. "단점 없는 패턴은 없으며 적재적소로 사용하는 것이 중요하다"는 결론을 이 프로젝트에서 얻었습니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= Gluttony ================= -->
+  <section id="gluttony">
+    <div class="proj-header">
+      <div>
+        <span class="eyebrow">05 · 팀 프로젝트 (5인) · 진행 중</span>
+        <h2 style="font-size:1.6rem;">Project Gluttony</h2>
+        <p class="lede" style="margin-top:6px;">"포식" 컨셉의 URP 로그라이트 보스전 액션 — 포만도·푸드파워·강화·업그레이드를 매 런마다 조립하는 빌드형 게임. Steam 출시 목표.</p>
+        <div class="proj-meta">
+          <span><strong>기간</strong> 2024.12.20 – 2026.09 (진행 중, 약 1년 9개월)</span>
+          <span><strong>인원</strong> 5인 팀 (클라이언트 2, 레벨디자인/기획 등)</span>
+          <span><strong>역할</strong> 클라이언트 · 게임플레이 시스템 프로그래머</span>
+        </div>
+      </div>
+      <div>
+        <a class="gh-link outline" href="https://github.com/jahniyoon/Project_Gluttony" target="_blank" rel="noopener">
+          <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          팀 저장소 보기
+        </a>
+        <span class="gh-note">jahniyoon/Project_Gluttony · 팀 소유 저장소</span>
+      </div>
+    </div>
+
+    <div class="tech-cloud">
+      <span class="tech-tag">C#</span><span class="tech-tag">Unity URP</span><span class="tech-tag">ScriptableObject</span><span class="tech-tag">리플렉션</span>
+      <span class="tech-tag">커스텀 어트리뷰트</span><span class="tech-tag">팩토리·전략 패턴</span><span class="tech-tag">상태 머신</span><span class="tech-tag">옵저버 패턴</span>
+      <span class="tech-tag">오브젝트 풀링</span><span class="tech-tag">코루틴</span><span class="tech-tag">파셜 클래스</span><span class="tech-tag">IL2CPP·AOT</span>
+    </div>
+
+    <p style="margin-top:20px; max-width:70ch; color:var(--text-dim); font-size:0.92rem;">같은 팀 저장소 안에서 브랜치 이동을 기준으로 두 시기로 나뉩니다. 이동 전(PROJECT_FG 시기)에는 보스 AI·전투·강화(렐릭)·푸드파워를, 이동 후(현재)에는 업그레이드·스킬·투사체·버프 4개 도메인을 개인 주담당으로 진행했습니다.</p>
+
+    <div class="mini-stats">
+      <div class="stat"><div class="n">582</div><div class="l">누적 커밋 (305+277)</div></div>
+      <div class="stat"><div class="n">369</div><div class="l">개인 담당 파일 수</div></div>
+      <div class="stat"><div class="n">33,800</div><div class="l">개인 담당 코드 라인</div></div>
+      <div class="stat"><div class="n">+28,336</div><div class="l">이동 후 추가 라인</div></div>
+      <div class="stat"><div class="n">100+</div><div class="l">업그레이드 이그제큐터 종류</div></div>
+    </div>
+
+    <!-- Phase I -->
+    <div class="phase-title">
+      <h4>Ⅰ. 브랜치 이동 전 — PROJECT_FG 시기</h4>
+      <span>2024.12.20 – 2025.12.03 · 305 커밋 · 신규 스크립트 약 200개</span>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">01</span>보스 AI · 상태 머신</h3>
+      <p><code>EnemyController</code>(제네릭 <code>FSM&lt;EnemyController&gt;</code>)를 상속한 <code>BossController</code>를 파셜 클래스로 분리(본체 / <code>BossController.FSM.cs</code> 상태 전이)해 대형 컨트롤러의 가독성과 팀 병렬 작업 시 머지 충돌을 관리했습니다. 모든 상태 전이 조건식 상단에 동일한 인터럽트 우선순위(빙결 → 사망/그로기 → 상태별 고유 전이)를 두어 예외 처리를 한 곳에 모았습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">02</span>보스 스킬 · 패링/처형 시스템</h3>
+      <p>보스 패턴을 스킬 액션 단위로 모듈화하고 수치·조건은 <code>BossSkillData</code>로 분리했습니다. <code>BossSkillManager</code>가 <code>SkillState</code>(Ready/Running/Finished)로 FSM과 연동하고, 패링 성공 시 스턴 진입 · 실패 시 페널티까지 모두 데이터로 분리해 밸런싱 가능한 <strong>패링 → 스턴 → 처형</strong> 루프를 구현했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">03</span>보스 강화(렐릭) 시스템</h3>
+      <p>하나의 강화를 <strong>조건(언제/만약) + 효과(무엇을)</strong> 조합으로 설계해 30종 이상을 코드 분기 없이 데이터로 정의했습니다. <code>BossUpgradeFactory</code>가 enum을 받아 조건·동작 객체를 생성(전략+팩토리 패턴)하고, <code>ExecutionStack</code>으로 스택 추가 시 이전 효과를 제거 후 재적용해 항상 원복 가능하게 만들었습니다.</p>
+    </div>
+
+    <ul class="case-list">
+      <li><span class="idx">01</span><span><span class="problem">대형 클래스(BossController) 유지보수 부담</span><span class="arrow">→</span>파셜 클래스로 본체/상태전이/스킬연동 분리, 머지 충돌 완화</span></li>
+      <li><span class="idx">02</span><span><span class="problem">강화 종류가 늘수록 프로그래머 병목</span><span class="arrow">→</span>조건+효과 데이터 구동 구조로 전환</span></li>
+      <li><span class="idx">03</span><span><span class="problem">매 시전 콜라이더 생성/파괴로 프레임 드랍</span><span class="arrow">→</span>오브젝트 풀링 도입</span></li>
+      <li><span class="idx">04</span><span><span class="problem">투사체 종류 증가로 상속 조합 폭발</span><span class="arrow">→</span>"Info 컴포넌트 조합" 방식으로 전환</span></li>
+    </ul>
+
+    <!-- Phase II -->
+    <div class="phase-title">
+      <h4>Ⅱ. 브랜치 이동 후 — 현재 시기</h4>
+      <span>2025.12.09 – 2026.09.05 · 277 커밋 · 순증 약 +11,300라인</span>
+    </div>
+
+    <div class="block">
+      <h3><span class="num">01</span>업그레이드 파이프라인 — 리플렉션 자동 등록</h3>
+      <p>효과 하나를 <strong>트리거(언제) → 조건(만약) → 효과(무엇을)</strong> 3단으로 분해해, 기획자가 스프레드시트만으로 100종 이상의 업그레이드를 조립할 수 있게 했습니다. 기존 약 150줄짜리 switch 팩토리를 <code>[Executor(ExecutorType.XXX)]</code> 커스텀 어트리뷰트 + 리플렉션으로 정적 생성자에서 자동 등록하는 구조로 리팩토링해, 신규 효과 추가가 "클래스 파일 1개 작성"으로 끝나도록 만들었습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">02</span>아웃게임 스킬트리 — MVP, 100% 개인 작업</h3>
+      <p><strong>모델(SkillTreeModel→NodeModel→ElementModel) / 프리젠터(순수 C#) / 뷰(MonoBehaviour)</strong> 3계층, 22개 파일로 분리 설계했습니다. 프리젠터는 모델과 뷰를 중재만 하는 순수 C# 클래스라 로직 단위 테스트·재사용이 가능하고, 노드 스스로가 아니라 <code>SkillTreePresenter</code>가 구매·리셋마다 전체 노드를 일괄 재계산해 순환·누락 문제를 없앴습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">03</span>투사체 시스템 (13종)</h3>
+      <p><code>ProjectileBase</code>(약 985줄)가 관통 수·도탄 횟수·파생 투사체·속도/사거리/감쇠 등을 데이터 주도 파라미터로 노출하고 <code>OnStart</code> / <code>OnEnemyHit</code> / <code>OnEnemyDie</code> 이벤트로 업그레이드·스킬이 훅을 겁니다. 이를 바탕으로 지뢰형·수류탄·궤도 회전·유도·히트스캔·부메랑·AOE 등 13종을 직접 구현했습니다.</p>
+    </div>
+    <div class="block">
+      <h3><span class="num">04</span>푸드파워 스킬 · 버프 시스템</h3>
+      <p><code>SkillBase</code>(약 1,470줄) → <code>FoodPowerSkill</code> 파생 구조로 "레벨 데이터 + 스킬 강화 + 전역 보정"을 더하는 레이어드 스탯 해석을 구현했습니다. <code>BuffHandler</code>(약 630줄)는 빙결·화상·기절 등 상태이상 20종을 관리하며, 일반 버프와 중첩 배율 계산이 필요한 버프를 리스트를 분리해 운용합니다. 버프는 증가 속도가 느려 의도적으로 switch 팩토리를 유지 — 업그레이드(리플렉션 자동 등록)와 <strong>규모·변화 빈도에 따라 팩토리 전략을 다르게 선택</strong>한 사례입니다.</p>
+    </div>
+
+    <ul class="case-list">
+      <li><span class="idx">01</span><span><span class="problem">업그레이드 팩토리 비대화</span><span class="arrow">→</span>커스텀 어트리뷰트+리플렉션 자동 등록, 신규 효과 추가가 클래스 1개로 축소</span></li>
+      <li><span class="idx">02</span><span><span class="problem">누적형 효과가 세이브/로드에서 깨짐</span><span class="arrow">→</span><code>orderIndex</code> 참조 전달로 순서 보장하며 복원</span></li>
+      <li><span class="idx">03</span><span><span class="problem">스킬트리 노드가 중앙 매니저에 강결합</span><span class="arrow">→</span>노드 자체 초기화 + Presenter 일괄 재계산 (MVP 분리)</span></li>
+      <li><span class="idx">04</span><span><span class="problem">런타임 투사체 프리팹 교체 시 데이터 유실·중복 생성</span><span class="arrow">→</span>고유값 이관 시점 정리 + 억제 플래그 도입</span></li>
+      <li><span class="idx">05</span><span><span class="problem">릴리스 빌드 크래시 (보스 투사체 Null 예외)</span><span class="arrow">→</span>세이브 로드 루프 가드 누락 수정, v0.2.x 안정화</span></li>
+    </ul>
+
+    <div class="callout">
+      <span class="kicker">Growth</span>
+      <p>이동 전 "보스 강화(렐릭)"의 조건+효과 구조에서 출발해, 이동 후 "업그레이드 파이프라인"의 트리거+조건+효과 + 리플렉션 자동 등록으로 발전시켰습니다. 같은 문제(확장 가능한 효과 조합 설계)를 두 번째로 마주쳤을 때 첫 시행착오를 발판 삼아 더 나은 구조로 개선한 사례입니다.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>본 문서는 5개 프로젝트의 GitHub 저장소(Unity2DProject · ProjectCR · Ephemera · ProjectVCG)를 직접 클론해 코드 수준에서 확인하고, Project Gluttony는 팀 저장소 기준 프로젝트 기록을 바탕으로 정리했습니다.</p>
+  </footer>
+</div>
+
+</body>
+</html>
