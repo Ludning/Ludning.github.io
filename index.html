@@ -828,7 +828,7 @@
     <div class="tech-cloud">
       <span class="tech-tag">C#</span><span class="tech-tag">Unity URP</span><span class="tech-tag">ScriptableObject</span><span class="tech-tag">리플렉션</span>
       <span class="tech-tag">커스텀 어트리뷰트</span><span class="tech-tag">팩토리·전략 패턴</span><span class="tech-tag">상태 머신</span><span class="tech-tag">옵저버 패턴</span>
-      <span class="tech-tag">오브젝트 풀링</span><span class="tech-tag">코루틴</span><span class="tech-tag">파셜 클래스</span><span class="tech-tag">IL2CPP·AOT</span>
+      <span class="tech-tag">오브젝트 풀링</span><span class="tech-tag">코루틴</span><span class="tech-tag">파셜 클래스</span>
     </div>
 
     <p style="margin-top:20px; max-width:70ch; color:var(--text-dim); font-size:0.92rem;">같은 팀 저장소 안에서 브랜치 이동을 기준으로 두 시기로 나뉩니다. 이동 전(PROJECT_FG 시기)에는 보스 AI·전투·강화(렐릭)·푸드파워를, 이동 후(현재)에는 업그레이드·스킬·투사체·버프 4개 도메인을 개인 주담당으로 진행했습니다.</p>
@@ -917,11 +917,7 @@
       </div>
     </div>
     <div class="block">
-      <h3><span class="num">03</span>투사체 시스템 (13종)</h3>
-      <p><code>ProjectileBase</code>(약 985줄)가 관통 수·도탄 횟수·파생 투사체·속도/사거리/감쇠 등을 데이터 주도 파라미터로 노출하고 <code>OnStart</code> / <code>OnEnemyHit</code> / <code>OnEnemyDie</code> 이벤트로 업그레이드·스킬이 훅을 겁니다. 이를 바탕으로 지뢰형·수류탄·궤도 회전·유도·히트스캔·부메랑·AOE 등 13종을 직접 구현했습니다.</p>
-    </div>
-    <div class="block">
-      <h3><span class="num">04</span>푸드파워 스킬 · 버프 시스템</h3>
+      <h3><span class="num">03</span>푸드파워 스킬 · 버프 시스템</h3>
       <p><code>SkillBase</code>(약 1,470줄) → <code>FoodPowerSkill</code> 파생 구조로 "레벨 데이터 + 스킬 강화 + 전역 보정"을 더하는 레이어드 스탯 해석을 구현했습니다. <code>BuffHandler</code>(약 630줄)는 빙결·화상·기절 등 상태이상 20종을 관리하며, 일반 버프와 중첩 배율 계산이 필요한 버프를 리스트를 분리해 운용합니다. 버프는 증가 속도가 느려 의도적으로 switch 팩토리를 유지 — 업그레이드(리플렉션 자동 등록)와 <strong>규모·변화 빈도에 따라 팩토리 전략을 다르게 선택</strong>한 사례입니다.</p>
     </div>
 
